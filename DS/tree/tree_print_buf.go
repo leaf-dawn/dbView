@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math"
 	"strconv"
-	"test/print"
+	print2 "test/DS/print"
 )
 
 /**
@@ -20,12 +20,12 @@ type TreePrintBuf interface {
 }
 
 type treePrintBuf struct {
-	terminal *print.SimpleTerminal
+	terminal *print2.SimpleTerminal
 }
 
 func NewTreePrintBuf() *treePrintBuf {
 	return &treePrintBuf{
-		terminal: print.NewTerminal(),
+		terminal: print2.NewTerminal(),
 	}
 }
 
@@ -113,7 +113,7 @@ func (sm treePrintBuf) nodeAdd(nodeSize int, node *TreeNode, isHighLight bool) {
 		copy(buf[1:], strconv.Itoa(node.Val))
 		if isHighLight {
 			sm.terminal.AddAndType(string(buf),
-				print.GetFormat(print.DISPLAY_HIGH_LIGHT, print.PROSPECT_RED))
+				print2.GetFormat(print2.DISPLAY_HIGH_LIGHT, print2.PROSPECT_RED))
 		} else {
 			sm.terminal.Add(string(buf))
 		}
