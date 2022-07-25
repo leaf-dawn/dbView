@@ -6,6 +6,9 @@ import (
 	"time"
 )
 
+func Test(t *testing.T) {
+}
+
 /**
  * 定时任务
  */
@@ -22,7 +25,7 @@ func TestTimer(t *testing.T) {
 /**
  * 生产者消费者测试
  */
-func Test(t *testing.T) {
+func TestWork(t *testing.T) {
 	taskCh := make(chan int, 100)
 	Work(taskCh)
 	for i := 0; i < 10; i++ {
