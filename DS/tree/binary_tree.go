@@ -5,13 +5,20 @@ import (
 	"strings"
 )
 
-func Serialize(root *TreeNode) string {
+//普通二叉树
+type BinaryTreeNode struct {
+	Val   int
+	Left  *BinaryTreeNode
+	Right *BinaryTreeNode
+}
+
+func Serialize(root *BinaryTreeNode) string {
 	// write code here
 	//层序遍历
 	if root == nil {
 		return "{}"
 	}
-	queue := []*TreeNode{root}
+	queue := []*BinaryTreeNode{root}
 	str := "{"
 	for len(queue) != 0 {
 		node := queue[0]
@@ -28,7 +35,7 @@ func Serialize(root *TreeNode) string {
 }
 
 //反序列化树
-func Deserialize(s string) *TreeNode {
+func Deserialize(s string) *BinaryTreeNode {
 	// write code here
 	//先序遍历
 	//添加第一个元素到root中
@@ -40,10 +47,10 @@ func Deserialize(s string) *TreeNode {
 	rootStr := listStr[0]
 	listStr = listStr[1:]
 	rootVal, _ := strconv.Atoi(rootStr)
-	root := &TreeNode{
+	root := &BinaryTreeNode{
 		Val: rootVal,
 	}
-	nodeQueue := []*TreeNode{root}
+	nodeQueue := []*BinaryTreeNode{root}
 	for len(nodeQueue) != 0 {
 		node := nodeQueue[0]
 		nodeQueue = nodeQueue[1:]
@@ -55,7 +62,7 @@ func Deserialize(s string) *TreeNode {
 			node.Left = nil
 		} else {
 			v, _ := strconv.Atoi(lStr)
-			node.Left = &TreeNode{
+			node.Left = &BinaryTreeNode{
 				Val: v,
 			}
 			nodeQueue = append(nodeQueue, node.Left)
@@ -64,7 +71,7 @@ func Deserialize(s string) *TreeNode {
 			node.Right = nil
 		} else {
 			v, _ := strconv.Atoi(rStr)
-			node.Right = &TreeNode{
+			node.Right = &BinaryTreeNode{
 				Val: v,
 			}
 			nodeQueue = append(nodeQueue, node.Right)
