@@ -5,6 +5,11 @@ import (
 	"strings"
 )
 
+type Node struct {
+	Val       int
+	Neighbors []*Node
+}
+
 func Deserialize(s string) *Node {
 	var beginNode *Node
 	m := map[int]*Node{}
